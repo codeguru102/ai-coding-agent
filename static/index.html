@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Agent Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💬 Coding Agent Chat</h1>
+            <p>Chat with AI to build and modify projects in real-time</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Panel: Chat -->
+            <div class="chat-panel">
+                <div class="chat-header">
+                    <h2>Conversation</h2>
+                    <button id="newChatBtn" class="btn-secondary">New Chat</button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <h3>👋 Welcome to Coding Agent!</h3>
+                        <p>Describe what you want to build or modify, and I'll help you code it!</p>
+                        <div class="example-prompts">
+                            <div class="example-prompt" data-prompt="Create a simple web server that serves a counter page">
+                                Create a counter web app
+                            </div>
+                            <div class="example-prompt" data-prompt="Build a todo list with add and delete functionality">
+                                Build a todo list
+                            </div>
+                            <div class="example-prompt" data-prompt="Make a weather dashboard that fetches data from an API">
+                                Weather dashboard
+                            </div>
+                            <div class="example-prompt" data-prompt="Create a markdown editor with live preview">
+                                Markdown editor
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <textarea id="chatInput" placeholder="Describe what you want to build or modify... (Press Ctrl+Enter to send)" rows="3"></textarea>
+                    <button id="sendBtn" class="btn-primary">
+                        <span>Send</span>
+                        <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel: Project -->
+            <div class="project-panel">
+                <div class="project-header">
+                    <h2>Project</h2>
+                    <div class="project-actions" id="projectActions" style="display: none;">
+                        <button id="buildBtn" class="btn-secondary">Build</button>
+                        <button id="runBtn" class="btn-success">Run</button>
+                        <button id="stopBtn" class="btn-warning" style="display: none;">Stop</button>
+                        <button id="restartBtn" class="btn-primary">Restart</button>
+                    </div>
+                </div>
+                
+                <div class="project-content">
+                    <!-- Project Structure -->
+                    <div class="project-structure">
+                        <h3>Project Files</h3>
+                        <div class="file-tree" id="fileTree">
+                            <div class="no-project">
+                                <p>No project yet. Start a conversation to create one!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code Editor & Preview -->
+                    <div class="editor-preview">
+                        <div class="editor-tabs">
+                            <button class="tab-btn active" data-tab="editor">Code Editor</button>
+                            <button class="tab-btn" data-tab="preview">Live Preview</button>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="editorPane">
+                                <div class="editor-header">
+                                    <select id="fileSelector" style="display: none;">
+                                        <option value="">Select a file to edit</option>
+                                    </select>
+                                    <button id="saveBtn" class="btn-secondary" style="display: none;">Save</button>
+                                </div>
+                                <textarea id="codeEditor" placeholder="Select a file to edit..." style="display: none;"></textarea>
+                                <div id="noFileSelected" class="no-file">
+                                    <p>Select a file from the project structure to edit</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane" id="previewPane">
+                                <div class="preview-container">
+                                    <div id="previewFrameContainer">
+                                        <div class="no-preview" id="noPreview">
+                                            <p>Run the project to see live preview</p>
+                                        </div>
+                                        <iframe id="previewFrame" style="display: none;"></iframe>
+                                    </div>
+                                    <div class="preview-output">
+                                        <h4>Console Output</h4>
+                                        <pre id="consoleOutput">No output yet. Run the project to see output.</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

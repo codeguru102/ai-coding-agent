@@ -1,0 +1,558 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+    min-height: 90vh;
+}
+
+header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 20px 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.2em;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+header p {
+    opacity: 0.9;
+    font-size: 1em;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0;
+    height: calc(100vh - 140px);
+}
+
+/* Chat Panel */
+.chat-panel {
+    background: #f8f9fa;
+    border-right: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-header {
+    padding: 20px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    flex-shrink: 0;
+}
+
+.chat-header h2 {
+    color: #2c3e50;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.welcome-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.welcome-message h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.example-prompts {
+    display: grid;
+    gap: 10px;
+    margin-top: 30px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.example-prompt {
+    padding: 15px;
+    background: white;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.example-prompt:hover {
+    background: #3498db;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.message {
+    padding: 15px;
+    border-radius: 12px;
+    max-width: 90%;
+    word-wrap: break-word;
+}
+
+.message.user {
+    background: #3498db;
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+}
+
+.message.assistant {
+    background: #f1f2f6;
+    color: #2c3e50;
+    border-bottom-left-radius: 4px;
+}
+
+.message-content {
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.message-files {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+.message-files .assistant & {
+    border-top-color: #ddd;
+}
+
+.file-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.assistant .file-badge {
+    background: #e1e8ed;
+    color: #2c3e50;
+}
+
+.chat-input-container {
+    padding: 20px;
+    border-top: 1px solid #e9ecef;
+    background: white;
+    flex-shrink: 0;
+}
+
+#chatInput {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 14px;
+    margin-bottom: 10px;
+    min-height: 60px;
+    max-height: 120px;
+}
+
+#chatInput:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* Project Panel */
+.project-panel {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.project-header {
+    padding: 20px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.project-header h2 {
+    color: #2c3e50;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.project-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.project-content {
+    flex: 1;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    height: 100%;
+    min-height: 0;
+}
+
+.project-structure {
+    border-bottom: 1px solid #e9ecef;
+    padding: 20px;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.project-structure h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 1.1em;
+}
+
+.file-tree {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+}
+
+.file-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.file-item:hover {
+    background: #f8f9fa;
+}
+
+.file-item.active {
+    background: #3498db;
+    color: white;
+}
+
+.file-icon {
+    width: 16px;
+    text-align: center;
+}
+
+.no-project, .no-file {
+    text-align: center;
+    padding: 40px 20px;
+    color: #95a5a6;
+}
+
+/* Editor & Preview */
+.editor-preview {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.editor-tabs {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    flex-shrink: 0;
+}
+
+.tab-btn {
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #666;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+    color: #3498db;
+    border-bottom-color: #3498db;
+    background: white;
+}
+
+.tab-content {
+    flex: 1;
+    position: relative;
+    min-height: 0;
+}
+
+.tab-pane {
+    display: none;
+    height: 100%;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.tab-pane.active {
+    display: flex;
+}
+
+.editor-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+#fileSelector {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+}
+
+#codeEditor {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    resize: none;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+#codeEditor:focus {
+    outline: none;
+}
+
+/* Preview */
+.preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+#previewFrameContainer {
+    flex: 1;
+    position: relative;
+    min-height: 0;
+}
+
+#previewFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.no-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #95a5a6;
+}
+
+.preview-output {
+    border-top: 1px solid #e9ecef;
+    padding: 15px 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.preview-output h4 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-size: 0.9em;
+}
+
+#consoleOutput {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.8em;
+    white-space: pre-wrap;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary, .btn-success, .btn-warning, .btn-danger {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85em;
+}
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #2980b9;
+}
+
+.btn-primary:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #7f8c8d;
+}
+
+.btn-success {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #219653;
+}
+
+.btn-warning {
+    background: #f39c12;
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #e67e22;
+}
+
+.loading-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .chat-panel {
+        border-right: none;
+        border-bottom: 1px solid #e9ecef;
+        max-height: 40vh;
+    }
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.status-running { background: #27ae60; color: white; }
+.status-stopped { background: #95a5a6; color: white; }
+.status-building { background: #f39c12; color: white; }
+.status-error { background: #e74c3c; color: white; }
+
+/* Scrollbar styling for all scrollable areas */
+.project-structure::-webkit-scrollbar,
+#codeEditor::-webkit-scrollbar,
+.preview-output::-webkit-scrollbar,
+#consoleOutput::-webkit-scrollbar {
+    width: 8px;
+}
+
+.project-structure::-webkit-scrollbar-track,
+#codeEditor::-webkit-scrollbar-track,
+.preview-output::-webkit-scrollbar-track,
+#consoleOutput::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.project-structure::-webkit-scrollbar-thumb,
+#codeEditor::-webkit-scrollbar-thumb,
+.preview-output::-webkit-scrollbar-thumb,
+#consoleOutput::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.project-structure::-webkit-scrollbar-thumb:hover,
+#codeEditor::-webkit-scrollbar-thumb:hover,
+.preview-output::-webkit-scrollbar-thumb:hover,
+#consoleOutput::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
