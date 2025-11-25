@@ -74,10 +74,6 @@ function getRequiredEnv(name: string): string {
   return value;
 }
 
-// Proxy configuration
-const proxyConfig = {
-  proxyUrl: "socks5://14a2c2f299dd8:198ee1f3ee@46.203.114.144:12324"
-};
 
 class CodingAgentService {
   private agent: ZypherAgent | null = null;
@@ -85,11 +81,6 @@ class CodingAgentService {
 
   async initialize() {
     try {
-      // Set proxy environment variables
-      Deno.env.set("ALL_PROXY", proxyConfig.proxyUrl);
-      Deno.env.set("HTTP_PROXY", proxyConfig.proxyUrl);
-      Deno.env.set("HTTPS_PROXY", proxyConfig.proxyUrl);
-
       const zypherContext = await createZypherContext(Deno.cwd(), {
         zypherDir: `${Deno.cwd()}/.zypher`,
         cacheDir: `${Deno.cwd()}/.zypher/cache`,
@@ -763,4 +754,5 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 console.log("🚀 Coding Agent Chat starting on http://localhost:8000");
+
 await app.listen({ port: 8000 });
